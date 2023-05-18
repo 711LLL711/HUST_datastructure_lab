@@ -37,7 +37,6 @@ status ListDelete(LinkList &L,int i,ElemType &e);
 status ListTraverse(LinkList L);
 status reverseList(LinkList L);
 status RemoveNthFromEnd(LinkList L,int n);
-status changenode(LinkList p);
 status sortlist(LinkList L,int order);
 status SaveList(LinkList L,char FileName[]);
 status LoadList(LinkList &L,char FileName[]);

@@ -1,6 +1,14 @@
 # lab01--顺序表
+|content|url|
+|:-:|:-:|
+|source code|[u1.cpp](u1.cpp)|
+|test case|[TEST](TEST)|
+|executable file|[u1.exe](u1.exe)|
 ## Description
 函数定义和main函数都在u1.cpp文件中。
+## Test case
+-2 1 -3 4 -1 2 1 -5 4   
+It is in [TEST](TEST) file. It can be loaded in the program.
 ## Typedef part
 ~~~cpp
 typedef int status;
