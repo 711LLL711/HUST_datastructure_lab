@@ -12,8 +12,8 @@
 |:--:|:--:|
 |lab1|[顺序表](https://github.com/711LLL711/HUST_datastructure_lab/tree/main/U1)|
 |lab2|[单链表](https://github.com/711LLL711/HUST_datastructure_lab/tree/main/U2)|
-|lab3|[二叉树]( #)|
-|lab4|[基于邻接表的图]( #)|
+|lab3|[二叉树](https://github.com/711LLL711/HUST_datastructure_lab/tree/main/U3)|
+|lab4|[基于邻接表的图](https://github.com/711LLL711/HUST_datastructure_lab/tree/main/U4)|
 
 ## Todo list📚
 -  实验报告
