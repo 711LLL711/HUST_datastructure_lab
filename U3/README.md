@@ -9,7 +9,7 @@
 函数定义在[def.h](def.h)文件中，main函数在[u3.cpp](u3.cpp)中。  
 输入序列为二叉树带空子树的先序遍历结点序列，每个结点对应一个整型的关键字和一个字符串，当关键字为0时，表示空子树，为-1表示输入结束。
 ## Test case
- 1  a  2  b  0  0  3  c  4  d  0  0  5  e  0  0 
+ 1  a  2  b  0  0  3  c  4  d  0  0  5  e  0  0   
 It is in [test.txt](test.txt) file. It can be loaded in the program.
 ## Typedef part
 ~~~cpp

@@ -9,10 +9,10 @@
 函数定义在[func.h](func.h)文件中，main函数在[u4.cpp](u4.cpp)中。  
 
 ## Test case
-5 线性表 8 集合 7 二叉树 6 无向图 -1 nil 5 6 5 7 8 7 7 6 -1 -1
-It is in [input.txt](test.txt) file.You can input it in the program.  
-More description of the creation of a graph,see [test.bmp](test.bmp) file.
-You can load [test.txt](test.txt) in the program. It's format is a little different from the initialization of a graph.
+5 线性表 8 集合 7 二叉树 6 无向图 -1 nil 5 6 5 7 8 7 7 6 -1 -1  
+It is in [input.txt](test.txt) file.You can input it in the program.   
+More description of the creation of a graph,see [test.bmp](test.bmp) file.   
+You can load [test.txt](test.txt) in the program. Its format is a little different from the initialization of a graph.
 ## Typedef part
 ~~~cpp
 /*队列*/
