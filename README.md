@@ -1,5 +1,5 @@
 # HUST_DataStructure_lab
-> 华中科技大学数据结构实验四次实验
+> 华中科技大学数据结构实验四次实验、课设
 ## Table of Contents
 |included|name|
 |:--:|:--:|
@@ -7,6 +7,7 @@
 |✅|测试样例|
 |✅|可执行程序|
 |❌(TODO)|实验报告|
+|❌(TODO)|课设|
 ## 4 labs
 |lab|url|
 |:--:|:--:|
@@ -17,3 +18,4 @@
 
 ## Todo list📚
 -  实验报告
+-  课设
