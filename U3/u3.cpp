@@ -449,7 +449,6 @@ int main(){
   }//end of while
     printf("\n");
 	printf("\t\t\t欢迎下次再使用本系统！\n\n");
-	printf("\t\t\t刘佳璇\n\n");
 	getchar();
 }//end of main()  
 

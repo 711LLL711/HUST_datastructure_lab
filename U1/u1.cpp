@@ -380,7 +380,7 @@ int main(void){
 	}//end of switch
   }//end of while
 
-  printf("欢迎下次再使用本辣鸡系统!\n");
+  printf("欢迎下次再使用本系统!\n");
   system("pause");
   return 0;
 }//end of main()
