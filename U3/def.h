@@ -45,7 +45,6 @@ int nowkey;
  * 函数名称: InitBiTree
  * 初始条件：二叉树T不存在
  * 操作结果: 构造空树二叉树T
- *
  */
 status InitBiTree(BiTree &T) {
 	T = (BiTree)malloc(sizeof(BiTNode));
@@ -59,8 +58,7 @@ status InitBiTree(BiTree &T) {
 /**
  * 函数名称: create
  * 操作结果: 根据definition先序序列递归构造二叉树结点
- * 注释:     服务于CreateBiTree函数
- *
+ * 函数功能: 服务于CreateBiTree函数
  */
 void create(BiTree &T,TElemType definition[])
 {
@@ -92,7 +90,6 @@ void create(BiTree &T,TElemType definition[])
  * 函数名称: DestroyBiTree
  * 初始条件：二叉树T存在
  * 操作结果: 销毁二叉树T
- *
  */
 void DestroyBiTree(BiTree &T)
 {
@@ -109,9 +106,8 @@ void DestroyBiTree(BiTree &T)
  * 函数名称: CreateBiTree
  * 初始条件：二叉树T存在
  * 操作结果: 操作结果是按definition构造二叉树T
- *   返回值：status类型
- *          如果关键字重复返回ERROR，创建成功返回OK
- *
+ * 返回值类型：status类型
+ * 返回值：如果关键字重复返回ERROR，创建成功返回OK
  */
 status CreateBiTree(BiTree &T,TElemType definition[])
 {
@@ -126,8 +122,7 @@ status CreateBiTree(BiTree &T,TElemType definition[])
 
 /**
  * 函数名称: FreeNode
- * 注释：服务于ClearBiTree函数
- *
+ * 函数功能：服务于ClearBiTree函数
  */
 void FreeNode(BiTree &T)
 {
@@ -144,7 +139,6 @@ void FreeNode(BiTree &T)
  * 函数名称: ClearBiTree
  * 初始条件：二叉树T已存在
  * 操作结果: 清空二叉树
- *
  */
 status ClearBiTree(BiTree &T)
 {
@@ -159,7 +153,7 @@ status ClearBiTree(BiTree &T)
 /**
  * 函数名称: max
  * 操作结果:返回两数最大值 
- * 注释：服务于BiTreeDepth函数
+ * 函数功能：服务于BiTreeDepth函数
  */
 int max(int a ,int b)
 {
@@ -170,7 +164,6 @@ int max(int a ,int b)
  * 函数名称: BiTreeDepth
  * 初始条件：二叉树T存在
  * 操作结果: 返回二叉树的深度
- *
  */
 int BiTreeDepth(BiTree T)
 {
@@ -184,8 +177,7 @@ int BiTreeDepth(BiTree T)
  * 函数名称: LocateNode
  * 初始条件：二叉树T存在
  * 操作结果: 操作结果是返回查找到的结点指针，如无关键字为e的结点，返回NULL；
- * 注释：e是和T中结点关键字类型相同的给定值；
- *
+ * 函数参数：e是和T中结点关键字类型相同的给定值；
  */
 BiTNode* LocateNode(BiTree T,KeyType e)
 {
@@ -214,7 +206,6 @@ BiTNode* LocateNode(BiTree T,KeyType e)
  * 函数名称: locate_parent
  * 初始条件：二叉树T存在
  * 操作结果: 前序遍历搜索关键字为e的结点，保存在p中，并且把该节点的父节点存在parent_p中
- *
  */
 void locate_parent(BiTree T, BiTree parent, KeyType e, BiTree& p, BiTree& parent_p) 
 {
@@ -233,9 +224,8 @@ void locate_parent(BiTree T, BiTree parent, KeyType e, BiTree& p, BiTree& parent
  * 函数名称: Assign
  * 初始条件：二叉树T已存在
  * 操作结果: 关键字为e的结点赋值为value
- * 注释：e是和T中结点关键字类型相同的给定值
+ * 函数参数：e是和T中结点关键字类型相同的给定值
  * 返回值：如果赋值后出现关键字重复，返回ERROR，复制成功返回OK
- *
  */
 status Assign(BiTree &T, KeyType e, TElemType value) {
     BiTNode* p = LocateNode(T, e);
@@ -254,7 +244,6 @@ status Assign(BiTree &T, KeyType e, TElemType value) {
  * 函数名称: GetSibling
  * 初始条件：二叉树T存在
  * 操作结果: 获取关键字为e的节点的兄弟节点
- *
  */
 BiTNode* GetSibling(BiTree T, KeyType e) {
     if (!T) { 
@@ -289,10 +278,10 @@ status BiTreeEmpty(BiTree T) {
  * 操作结果: 根据LR为0或者1，插入结点c到T中，
  *          作为关键字为e的结点的左或右孩子结点，
  *          结点e的原有左子树或右子树则为结点c的右子树；
- * 注释: e是和T中结点关键字类型相同的给定值，LR为0或1，c是待插入结点；
- *      LR为-1时，作为根结点插入，原根结点作为c的右子树。
- * 返回值：status类型
- *         二叉树为空/找不到目标节点/插入节点后关键字重复，返回ERROR
+ * 函数参数: e是和T中结点关键字类型相同的给定值，LR为0或1，c是待插入结点；
+ *          LR为-1时，作为根结点插入，原根结点作为c的右子树。
+ * 返回值类型：status类型
+ * 返回值：值二叉树为空/找不到目标节点/插入节点后关键字重复，返回ERROR；
  *         插入成功返回OK
  * 
  */
@@ -431,7 +420,6 @@ status DeleteNode(BiTree &T,KeyType e)
  * 函数名称: visit
  * 初始条件：二叉树存在
  * 操作结果: 打印结点关键字
- *
  */
 void visit(BiTree T)
 {
@@ -444,7 +432,6 @@ void visit(BiTree T)
  * 函数名称: PreOrderTraverse
  * 初始条件：二叉树T存在
  * 操作结果: 先序遍历，对每个结点调用函数Visit一次且一次，一旦调用失败，则操作失败。
- *
  */
 void PreOrderTraverse(BiTree t,void (*visit)(BiTree))
 {
@@ -471,7 +458,6 @@ void PreOrderTraverse(BiTree t,void (*visit)(BiTree))
  * 函数名称: InOrderTraverse
  * 初始条件：二叉树T存在
  * 操作结果: 中序遍历t，对每个结点调用函数Visit一次且一次，一旦调用失败，则操作失败；
- *
  */
 void InOrderTraverse(BiTree T,void (*visit)(BiTree))
 {
@@ -488,7 +474,6 @@ void InOrderTraverse(BiTree T,void (*visit)(BiTree))
  * 函数名称: PostOrderTraverse
  * 初始条件：二叉树T存在
  * 操作结果: 序遍历t，对每个结点调用函数Visit一次且一次，一旦调用失败，则操作失败。
- *
  */
 void PostOrderTraverse(BiTree T,void (*visit)(BiTree))
 {
@@ -505,7 +490,6 @@ void PostOrderTraverse(BiTree T,void (*visit)(BiTree))
  * 函数名称: LevelOrderTraverse
  * 初始条件：二叉树T存在
  * 操作结果: 层序遍历t，对每个结点调用函数Visit一次且一次，一旦调用失败，则操作失败。
- *
  */
 
 void LevelOrderTraverse(BiTree T,void (*visit)(BiTree))
@@ -532,12 +516,10 @@ void LevelOrderTraverse(BiTree T,void (*visit)(BiTree))
 
 /***********added function*****************/
 
-
 /**
  * 函数名称: SaveBiTree
  * 初始条件：二叉树T存在
- * 操作结果: 将二叉树T的数据一先序保存在文件中
- *
+ * 操作结果: 将二叉树T的数据以先序保存在文件中
  */
 status SaveBiTree(BiTNode *T,char FileName[]) { //非递归先序储存
 	FILE *fp;
@@ -573,7 +555,7 @@ status SaveBiTree(BiTNode *T,char FileName[]) { //非递归先序储存
  * 函数名称: read
  * 初始条件：文件存在
  * 操作结果: 递归将文件中的数据读取到二叉树T中
- * 注释：    服务于LoadBiTree
+ * 函数功能：服务于LoadBiTree
  */
 void read(BiTree &T,FILE *fp) {
 	int definition;
@@ -592,9 +574,7 @@ void read(BiTree &T,FILE *fp) {
  * 函数名称: LoadBiTree
  * 初始条件：文件存在
  * 操作结果: 将文件中的数据读取到二叉树T中
- *
  */
-
 status LoadBiTree(BiTree &T,char FileName[]) {
 	FILE *fp;
 	if ((fp=fopen(FileName,"rb"))==NULL) {
@@ -610,17 +590,7 @@ status LoadBiTree(BiTree &T,char FileName[]) {
  * 函数名称: MaxPathSum
  * 初始条件：二叉树T存在
  * 操作结果: 返回二叉树中的最大路径和，从一个结点到另一个节点的路径
- * 实现思路：最大路径和的求法是：对于每个结点，
- *          求出以该结点为根的子树的最大路径和，
- *          然后比较所有结点的最大路径和，取最大的那个
- *          以该结点为根的子树的最大路径和的求法是：
- *          如果该结点的左子树的最大路径和小于0，
- *          则以该结点的左子树为根的子树的最大路径和为0
- *          如果该结点的右子树的最大路径和小于0，
- *          则以该结点的右子树为根的子树的最大路径和为0
- *          以该结点为根的子树的最大路径和为：
- *          该结点的值+左子树的最大路径和+右子树的最大路径和
- * 
+ * 算法思路：递归的求左右子树的最大路径和，最后加上该结点的值。
  */
 int MaxPathSum(BiTree T, int &maxSum)
 {
@@ -640,7 +610,7 @@ int MaxPathSum(BiTree T, int &maxSum)
 /**
  * 函数名称: LowestCommonAncestor
  * 初始条件：二叉树T存在
- * 函数输入：二叉树T，关键字e1，e2
+ * 函数参数：二叉树T，关键字e1，e2
  * 操作结果: 该二叉树中e1节点和e2节点的最近公共祖先
  * 函数思路：如果e1和e2分别是T的左右子树的节点，
  *          那么T就是他们的最近公共祖先
@@ -668,7 +638,7 @@ BiTree LowestCommonAncestor(BiTree T, KeyType e1, KeyType e2)
  * 函数名称: InvertTree
  * 初始条件：线性表L已存在
  * 操作结果: 将T翻转，使其所有节点的左右节点互换
- *
+ * 算法思路：递归翻转，在前序位置交换左右节点
  */
 void InvertTree(BiTree T)
 {
@@ -685,8 +655,7 @@ void InvertTree(BiTree T)
 /**
  * 函数名称: printTree
  * 初始条件：线性表L已存在
- * 操作结果: 将树形图形象的打印出来
- *
+ * 函数功能: 将树形图形象的打印出来
  */
 void printTree(BiTree T, int type, int level)
 {

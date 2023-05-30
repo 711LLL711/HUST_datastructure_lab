@@ -238,7 +238,6 @@ status CreateGraph(ALGraph &G,VertexType V[],KeyType VR[][2]) {
  * 函数名称: DestroyGraph
  * 初始条件：图G已存在
  * 操作结果: 销毁图G
- *
  *************************/
 status DestroyGraph(ALGraph &G) {
 	int i;
@@ -251,7 +250,7 @@ status DestroyGraph(ALGraph &G) {
 			p = q;
 		}
 	}
-	G.vexnum = 0;//之后将图的信息,顶点数目,边数目,kind置为0
+	G.vexnum = 0;//之后将图的信息,顶点数目,边数目,kind置为DG
 	G.arcnum = 0;
     G.kind=DG;
 	return OK;
@@ -260,8 +259,7 @@ status DestroyGraph(ALGraph &G) {
 /******************************************************************
  * 函数名称: LocateVex
  * 初始条件：图G存在，u和G中的顶点具有相同特征
- * 函数功能: 若u在图G中存在，返回顶点u的索引，否则返回其它信息
- *
+ * 函数功能: 若u在图G中存在，返回顶点u的索引，否则返回ERROR
  ******************************************************************/
 status LocateVex(ALGraph G,KeyType u) {
 	int i;
@@ -269,7 +267,7 @@ status LocateVex(ALGraph G,KeyType u) {
 		if(u == G.vertices[i].data.key)//判断节点名称是否相同
 			return i;//如果查找成功，返回i的值
 	}
-	return -1;
+	return ERROR;
 }
 
 
@@ -299,20 +297,20 @@ status PutVex(ALGraph &G,KeyType u,VertexType value)
 /********************************************************************
  * 函数名称: FirstAdjVex
  * 初始条件：图G存在，v是G中的某个顶点
- * 函数功能: 返回v的第一个邻接顶点，如果v没有邻接顶点，返回"空"
+ * 函数功能: 返回v的第一个邻接顶点，如果v没有邻接顶点，返回ERROR
  ********************************************************************/
 int FirstAdjVex(ALGraph G,KeyType u)
 {
     int i;
     ArcNode *p;
     i = LocateVex(G, u);
-    if(i==-1){//如果没有找到该节点，返回-1
+    if(i==-1){//如果没有找到该节点，返回ERROR
         return ERROR;
     }
     p = G.vertices[i].firstarc;
     if(p){
         return p->adjvex;
-    }else{//如果没有邻接点，返回-1
+    }else{//如果没有邻接点，返回ERROR
         return ERROR;
     }
 }
@@ -320,18 +318,17 @@ int FirstAdjVex(ALGraph G,KeyType u)
 /***********************************************************************************
  * 函数名称: NextAdjVex
  * 初始条件：图G存在，v是G的一个顶点,w是v的邻接顶点
- * 函数功能: 返回v的（相对于w）下一个邻接顶点，如果w是最后一个邻接顶点，返回"空"
+ * 函数功能: 返回v的（相对于w）下一个邻接顶点，如果w是最后一个邻接顶点，返回ERROR
  ***********************************************************************************/
 int NextAdjVex(ALGraph G,KeyType v,KeyType w)
-//v对应G的一个顶点,w对应v的邻接顶点；操作结果是返回v的（相对于w）下一个邻接顶点的位序；如果w是最后一个邻接顶点，或v、w对应顶点不存在，则返回-1。
 {
     int i;
     for(i = 0 ;i < G.vexnum ;i++){
-        if(G.vertices[i].data.key == v){
+        if(G.vertices[i].data.key == v){//找到结点v
             ArcNode *p = G.vertices[i].firstarc;
             while(p){
-                if(G.vertices[p->adjvex].data.key == w){
-                    if(p->nextarc){
+                if(G.vertices[p->adjvex].data.key == w){//找到结点w
+                    if(p->nextarc){//如果w不是最后一个邻接顶点
                         return p->nextarc->adjvex;
                     }else{
                         return ERROR;
@@ -353,17 +350,13 @@ int NextAdjVex(ALGraph G,KeyType v,KeyType w)
  *************************************************/
 
 status InsertVex(ALGraph &G,VertexType v)
-//在图G中插入顶点v，成功返回OK,否则返回ERROR
 {
-    // 请在这里补充代码，完成本关任务
-    /********** Begin *********/
     if(LocateVex(G,v.key)>=0) return ERROR;
     if(G.vexnum==MAX_VERTEX_NUM) return ERROR;
     G.vertices[G.vexnum].data=v;
     G.vertices[G.vexnum].firstarc=NULL;
     G.vexnum++;
     return OK;
-    /********** End **********/
 }
 
 /***************************************************
@@ -374,24 +367,26 @@ status InsertVex(ALGraph &G,VertexType v)
 status DeleteVex(ALGraph &G,KeyType v) {
 	int i = 0, j;
 	ArcNode *p, *q;
-	if(G.vertices[0].data.key != -1 && G.vertices[1].data.key == -1) return ERROR;
+	if(G.vertices[0].data.key != -1 && G.vertices[1].data.key == -1){
+        return ERROR;      
+    } //如果图中只有一个顶点，删除失败
 	j = LocateVex(G, v);
-	if(j == -1 )
+	if(j == -1)
 		return ERROR;
 	p = G.vertices[j].firstarc;
-	while(p) {
+	while(p) {//删除与顶点v相关的弧
 		q = p;
 		p = p->nextarc;
 		free(q);
 		G.arcnum--;
 		i++;
 	}
-	G.vexnum--;
+	G.vexnum--;//顶点数--
 	for(i = j; i < G.vexnum; i++)
 		G.vertices[i] = G.vertices[i+1];
 	for(i = 0; i < G.vexnum; i++) {
 		p = G.vertices[i].firstarc;
-		while(p) {
+		while(p) {//删除与顶点v相关的弧
 			if(p->adjvex == j) {
 				if(p == G.vertices[i].firstarc) {
 					G.vertices[i].firstarc = p->nextarc;
@@ -403,7 +398,7 @@ status DeleteVex(ALGraph &G,KeyType v) {
 					p = q -> nextarc;
 				}
 			} else {
-				if(p->adjvex > j)
+				if(p->adjvex > j)//如果顶点编号大于j，编号减一
 					p->adjvex--;
 				q = p;
 				p = p->nextarc;
@@ -433,6 +428,7 @@ status InsertArc(ALGraph &G,KeyType v,KeyType w) {
 		p = p -> nextarc;
 	}
 	G.arcnum++;
+    //添加弧
 	p=(ArcNode*)malloc(sizeof(ArcNode));
 	p->adjvex = j;
 	p->nextarc = G.vertices[i].firstarc;
@@ -490,7 +486,6 @@ status DeleteArc(ALGraph &G, KeyType v, KeyType w) {
 			free(p);
 		}
 	}
-	// 返回删除操作的状态
 	return OK;
 }
 
@@ -498,7 +493,7 @@ status DeleteArc(ALGraph &G, KeyType v, KeyType w) {
 /*************************************************
  * 函数名称: dfshelper
  * 初始条件：图G存在
- * 函数功能: 深度优先遍历
+ * 函数功能: 深度优先遍历，服务于DFSTraverse
  *************************************************/
 void dfshelper(const ALGraph &G,int i ,int *visited,void (*visit)(VertexType)){
     visited[i] = 1;
@@ -514,11 +509,11 @@ void dfshelper(const ALGraph &G,int i ,int *visited,void (*visit)(VertexType)){
 }
 
 
-/***************************************************************************************************
+/***********************************************************************************
  * 函数名称: DFSTraverse
  * 初始条件：图G存在
  * 函数功能: 进行深度优先搜索遍历，依次对图中的每一个顶点使用函数visit访问一次，且仅访问一次
- ***************************************************************************************************/
+ ***********************************************************************************/
 status DFSTraverse(const ALGraph &G,void (*visit)(VertexType))
 {
     int k;
@@ -538,11 +533,11 @@ status DFSTraverse(const ALGraph &G,void (*visit)(VertexType))
 
 
 
-/***********************************************************************************************
+/*************************************************************************************
  * 函数名称: BFSTraverse
  * 初始条件：图G存在
  * 函数功能: 进行广度优先搜索遍历，依次对图中的每一个顶点使用函数visit访问一次，且仅访问一次
- ***********************************************************************************************/
+ *************************************************************************************/
 status BFSTraverse(const ALGraph &G, void (*visit)(VertexType)) {
     if (G.vexnum == 0) return ERROR;
 
@@ -677,14 +672,12 @@ status LoadGraph(ALGraph &G, char FileName[])
 }
 
 /*附加功能*/
-/*函数名称是VerticesSetLessThanK(G,v,k)，初始条件是图G存在；
-操作结果是返回与顶点v距离小于k的顶点集合；*/
 /*****************************
  * 函数名称: VerticesSetLessThanK
  * 初始条件:图G存在
  * 函数功能: 返回与顶点v距离小于k的顶点集合result,并返回顶点个数count
  * 返回值：如果存在，返回OK，如果不存在，返回ERROR
- * 
+ * 算法思路：BFS
  *****************************/
 status VerticesSetLessThanK(ALGraph G,int v,int k,int *result,int *count){
     int dist[MAX_VERTEX_NUM];//dist[i]表示顶点v到顶点i的距离
@@ -733,7 +726,7 @@ status VerticesSetLessThanK(ALGraph G,int v,int k,int *result,int *count){
  * 函数名称: ShortestPathLength(G,v,w); 
  * 初始条件:图G存在
  * 函数功能: 返回顶点v与顶点w的最短路径的长度；
- * 
+ * 算法思路：利用队列使用BFS，记录距离
  *****************************/
 
 int ShortestPathLength(ALGraph G, KeyType v, KeyType w) {
@@ -796,7 +789,7 @@ void DFS(ALGraph G, int v, int visited[]) {
  * 函数名称: ConnectedComponentsNums
  * 初始条件:图G存在
  * 函数功能: 返回图G的所有连通分量的个数
- * 
+ * 算法思路：使用DFS，每次遍历就是找到了一个连通分量
  *****************************/
 int ConnectedComponentsNums(ALGraph G) {
     int count = 0;

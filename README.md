@@ -6,16 +6,16 @@
 |✅|源代码|
 |✅|测试样例|
 |✅|可执行程序|
-|❌(TODO)|实验报告|
+|✅|实验报告|
 |❌(TODO)|课设|
 ## 4 labs
 |lab|url|
 |:--:|:--:|
-|lab1|[顺序表](https://github.com/711LLL711/HUST_datastructure_lab/tree/main/U1)|
-|lab2|[单链表](https://github.com/711LLL711/HUST_datastructure_lab/tree/main/U2)|
-|lab3|[二叉树](https://github.com/711LLL711/HUST_datastructure_lab/tree/main/U3)|
-|lab4|[基于邻接表的图](https://github.com/711LLL711/HUST_datastructure_lab/tree/main/U4)|
+|lab1|[顺序表](U1/README.md)|
+|lab2|[单链表](u2/README.md)|
+|lab3|[二叉树](U3/README.md)|
+|lab4|[基于邻接表的图](U4/README.md)|
+|report|[实验报告](report/report.pdf)|
 >note:为方便cmd中文输出，main.cpp使用gbk编码.
 ## Todo list📚
--  实验报告
 -  课设
